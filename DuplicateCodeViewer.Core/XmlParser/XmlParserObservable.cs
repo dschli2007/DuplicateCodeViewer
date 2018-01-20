@@ -1,8 +1,8 @@
-﻿using DuplicateCodeViewer.Core.Metadata;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Xml;
+using DuplicateCodeViewer.Core.Metadata;
 
-namespace DuplicateCodeViewer.Core.XmlFileParser
+namespace DuplicateCodeViewer.Core.XmlParser
 {
     internal class XmlParserObservable
     {

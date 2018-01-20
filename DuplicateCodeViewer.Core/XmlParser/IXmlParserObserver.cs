@@ -1,6 +1,6 @@
 ﻿using DuplicateCodeViewer.Core.Metadata;
 
-namespace DuplicateCodeViewer.Core.XmlFileParser
+namespace DuplicateCodeViewer.Core.XmlParser
 {
     public interface IXmlParserObserver
     {

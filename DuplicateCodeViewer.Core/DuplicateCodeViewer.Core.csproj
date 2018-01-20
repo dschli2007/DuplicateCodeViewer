@@ -44,8 +44,8 @@
     <Compile Include="Metadata\Fragment.cs" />
     <Compile Include="Metadata\SourceFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XmlFileParser\IXmlParserObserver.cs" />
-    <Compile Include="XmlFileParser\XmlParserObservable.cs" />
+    <Compile Include="XmlParser\IXmlParserObserver.cs" />
+    <Compile Include="XmlParser\XmlParserObservable.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
