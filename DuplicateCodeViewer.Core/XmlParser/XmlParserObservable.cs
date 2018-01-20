@@ -45,9 +45,28 @@ namespace DuplicateCodeViewer.Core.XmlParser
 
         public void Parse(XmlDocument document)
         {
-            foreach (var node in document.GetElementsByTagName("Duplicate"))
+            var nodeReader = new DuplicateXmlNodeReader();
+            foreach (XmlNode node in document.GetElementsByTagName("Duplicate"))
             {
-                
+                nodeReader.Read(node);
+                var newDuplicate = new Duplicate
+                {
+                    Cost = nodeReader.Cost,
+                    Fragment1 = new Fragment
+                    {
+                        SourceFile = _sourceFileBuilder.GetSourceFile(nodeReader.Fragment1.Filename),
+                        LineStart = nodeReader.Fragment1.LineStart,
+                        LineEnd = nodeReader.Fragment1.LineEnd
+
+                    },
+                    Fragment2 = new Fragment
+                    {
+                        SourceFile = _sourceFileBuilder.GetSourceFile(nodeReader.Fragment2.Filename),
+                        LineStart = nodeReader.Fragment2.LineStart,
+                        LineEnd = nodeReader.Fragment2.LineEnd
+                    }
+                };
+                Notify(newDuplicate);
             }
         }
     }
