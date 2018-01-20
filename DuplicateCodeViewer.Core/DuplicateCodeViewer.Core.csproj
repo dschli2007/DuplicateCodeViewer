@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller.cs" />
+    <Compile Include="IController.cs" />
     <Compile Include="Metadata\Duplicate.cs" />
     <Compile Include="Metadata\Fragment.cs" />
     <Compile Include="Metadata\SourceFile.cs" />
