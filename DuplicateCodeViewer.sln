@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuplicateCodeViewer.UI", "D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuplicateCodeViewer.Core", "DuplicateCodeViewer.Core\DuplicateCodeViewer.Core.csproj", "{7B1334C5-A14A-46B3-A36C-4EAF963EB78C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuplicateCodeViewer.Core.Tests", "DuplicateCodeViewer.Core.Tests\DuplicateCodeViewer.Core.Tests.csproj", "{444D8B18-8419-43CF-9501-75466D93088C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7B1334C5-A14A-46B3-A36C-4EAF963EB78C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B1334C5-A14A-46B3-A36C-4EAF963EB78C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B1334C5-A14A-46B3-A36C-4EAF963EB78C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{444D8B18-8419-43CF-9501-75466D93088C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{444D8B18-8419-43CF-9501-75466D93088C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{444D8B18-8419-43CF-9501-75466D93088C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{444D8B18-8419-43CF-9501-75466D93088C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

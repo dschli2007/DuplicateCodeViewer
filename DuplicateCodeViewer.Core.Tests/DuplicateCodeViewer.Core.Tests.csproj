@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7B1334C5-A14A-46B3-A36C-4EAF963EB78C}</ProjectGuid>
+    <ProjectGuid>{444D8B18-8419-43CF-9501-75466D93088C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DuplicateCodeViewer.Core</RootNamespace>
-    <AssemblyName>DuplicateCodeViewer.Core</AssemblyName>
+    <RootNamespace>DuplicateCodeViewer.Core.Tests</RootNamespace>
+    <AssemblyName>DuplicateCodeViewer.Core.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
