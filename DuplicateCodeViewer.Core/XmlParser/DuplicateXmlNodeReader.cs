@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System.Collections.Generic;
+using System.Xml;
 
 namespace DuplicateCodeViewer.Core.XmlParser
 {
@@ -13,14 +14,25 @@ namespace DuplicateCodeViewer.Core.XmlParser
 
         private const int DefaultCost = 1;
         private XmlNode _node;
+        private List<FragmentInfo> _fragments;
 
         public int Cost { get; private set; }
-        public FragmentInfo Fragment1 { get; private set; }
-        public FragmentInfo Fragment2 { get; private set; }
+
+        public IEnumerable<FragmentInfo> Fragments
+        {
+            get
+            {
+                foreach (var fragment in _fragments)
+                {
+                    yield return fragment;
+                }
+            }
+        }
 
         public void Read(XmlNode node)
         {
             _node = node;
+            _fragments = new List<FragmentInfo>();
             ReadCost();
             ReadFragments();
         }
@@ -33,14 +45,15 @@ namespace DuplicateCodeViewer.Core.XmlParser
 
         private void ReadFragments()
         {
-            var child = _node.FirstChild;
-            Fragment1 = ReadFragment(child);
-
-            var child2 = child.NextSibling;
-            Fragment2 = ReadFragment(child2);
+            var fragmentNode = _node.FirstChild;
+            while (fragmentNode != null)
+            {
+                _fragments.Add(ReadFragment(fragmentNode));
+                fragmentNode = fragmentNode.NextSibling;
+            }
         }
 
-        private FragmentInfo ReadFragment(XmlNode node)
+        private static FragmentInfo ReadFragment(XmlNode node)
         {
             var result = new FragmentInfo();
             var propertyNode = node.FirstChild;

@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System.Linq;
+using System.Xml;
 using DuplicateCodeViewer.Core.XmlParser;
 using NUnit.Framework;
 
@@ -63,7 +64,7 @@ namespace DuplicateCodeViewer.Core.Tests.XmlParser
         {
             var reader = CreateReader();
             reader.Read(_duplicateNode);
-            Assert.AreEqual(@"..\file1.cs", reader.Fragment1.Filename);
+            Assert.AreEqual(@"..\file1.cs", reader.Fragments.First().Filename);
         }
 
         [Test]
@@ -71,7 +72,7 @@ namespace DuplicateCodeViewer.Core.Tests.XmlParser
         {
             var reader = CreateReader();
             reader.Read(_duplicateNode);
-            Assert.AreEqual(72, reader.Fragment1.LineStart);
+            Assert.AreEqual(72, reader.Fragments.First().LineStart);
         }
 
         [Test]
@@ -79,23 +80,23 @@ namespace DuplicateCodeViewer.Core.Tests.XmlParser
         {
             var reader = CreateReader();
             reader.Read(_duplicateNode);
-            Assert.AreEqual(82, reader.Fragment1.LineEnd);
+            Assert.AreEqual(82, reader.Fragments.First().LineEnd);
         }
-        
+
         [Test]
         public void Read_WhenValidNode_ShouldReadFragmentFileName2()
         {
             var reader = CreateReader();
             reader.Read(_duplicateNode);
-            Assert.AreEqual(@"..\file2.cs", reader.Fragment2.Filename);
+            Assert.AreEqual(@"..\file2.cs", reader.Fragments.ToArray()[1].Filename);
         }
-        
+
         [Test]
         public void Read_WhenValidNode_ShouldReadFragmentLineStart2()
         {
             var reader = CreateReader();
             reader.Read(_duplicateNode);
-            Assert.AreEqual(92, reader.Fragment2.LineStart);
+            Assert.AreEqual(92, reader.Fragments.ToArray()[1].LineStart);
         }
 
         [Test]
@@ -103,7 +104,7 @@ namespace DuplicateCodeViewer.Core.Tests.XmlParser
         {
             var reader = CreateReader();
             reader.Read(_duplicateNode);
-            Assert.AreEqual(102, reader.Fragment2.LineEnd);
+            Assert.AreEqual(102, reader.Fragments.ToArray()[1].LineEnd);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace DuplicateCodeViewer.Core.Tests.XmlParser
             var sourceFileBuilder = new SourceFileBuilderFlyWeightFake();
             return new XmlParserObservable(sourceFileBuilder);
         }
-        
+
         private XmlDocument GetXmlDocument()
         {
             const string sampleDocument = @"<Samples><Duplicate Cost=""210"">
@@ -102,10 +102,10 @@ namespace DuplicateCodeViewer.Core.Tests.XmlParser
             parser.Parse(GetXmlDocument());
 
             Assert.AreEqual(2, observer.Duplicates.Count);
-            Assert.AreEqual(@"..\file1.cs", observer.Duplicates[0].Fragment1.SourceFile.Filename);
-            Assert.AreEqual(@"..\file2.cs", observer.Duplicates[0].Fragment2.SourceFile.Filename);
-            Assert.AreEqual(@"..\file3.cs", observer.Duplicates[1].Fragment1.SourceFile.Filename);
-            Assert.AreEqual(@"..\file4.cs", observer.Duplicates[1].Fragment2.SourceFile.Filename);
+            Assert.AreEqual(@"..\file1.cs", observer.Duplicates[0].Fragments[0].SourceFile.Filename);
+            Assert.AreEqual(@"..\file2.cs", observer.Duplicates[0].Fragments[1].SourceFile.Filename);
+            Assert.AreEqual(@"..\file3.cs", observer.Duplicates[1].Fragments[0].SourceFile.Filename);
+            Assert.AreEqual(@"..\file4.cs", observer.Duplicates[1].Fragments[1].SourceFile.Filename);
         }
 
         [Test]
@@ -132,10 +132,10 @@ namespace DuplicateCodeViewer.Core.Tests.XmlParser
             parser.Parse(GetXmlDocument());
 
             Assert.AreEqual(2, observer.Duplicates.Count);
-            Assert.AreEqual(72, observer.Duplicates[0].Fragment1.LineStart);
-            Assert.AreEqual(92, observer.Duplicates[0].Fragment2.LineStart);
-            Assert.AreEqual(73, observer.Duplicates[1].Fragment1.LineStart);
-            Assert.AreEqual(93, observer.Duplicates[1].Fragment2.LineStart);
+            Assert.AreEqual(72, observer.Duplicates[0].Fragments[0].LineStart);
+            Assert.AreEqual(92, observer.Duplicates[0].Fragments[1].LineStart);
+            Assert.AreEqual(73, observer.Duplicates[1].Fragments[0].LineStart);
+            Assert.AreEqual(93, observer.Duplicates[1].Fragments[1].LineStart);
         }
 
         [Test]
@@ -148,10 +148,10 @@ namespace DuplicateCodeViewer.Core.Tests.XmlParser
             parser.Parse(GetXmlDocument());
 
             Assert.AreEqual(2, observer.Duplicates.Count);
-            Assert.AreEqual(82, observer.Duplicates[0].Fragment1.LineEnd);
-            Assert.AreEqual(102, observer.Duplicates[0].Fragment2.LineEnd);
-            Assert.AreEqual(83, observer.Duplicates[1].Fragment1.LineEnd);
-            Assert.AreEqual(103, observer.Duplicates[1].Fragment2.LineEnd);
+            Assert.AreEqual(82, observer.Duplicates[0].Fragments[0].LineEnd);
+            Assert.AreEqual(102, observer.Duplicates[0].Fragments[1].LineEnd);
+            Assert.AreEqual(83, observer.Duplicates[1].Fragments[0].LineEnd);
+            Assert.AreEqual(103, observer.Duplicates[1].Fragments[1].LineEnd);
 
         }
 

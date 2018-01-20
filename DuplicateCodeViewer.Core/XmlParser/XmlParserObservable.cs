@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Xml;
+using System.Linq;
 using DuplicateCodeViewer.Core.Metadata;
 using DuplicateCodeViewer.Core.SourceFileBuilder;
 
@@ -52,19 +53,13 @@ namespace DuplicateCodeViewer.Core.XmlParser
                 var newDuplicate = new Duplicate
                 {
                     Cost = nodeReader.Cost,
-                    Fragment1 = new Fragment
+                    Fragments = (from item in nodeReader.Fragments select new Fragment
                     {
-                        SourceFile = _sourceFileBuilder.GetSourceFile(nodeReader.Fragment1.Filename),
-                        LineStart = nodeReader.Fragment1.LineStart,
-                        LineEnd = nodeReader.Fragment1.LineEnd
+                        SourceFile = _sourceFileBuilder.GetSourceFile(item.Filename),
+                        LineStart = item.LineStart,
+                        LineEnd = item.LineEnd
 
-                    },
-                    Fragment2 = new Fragment
-                    {
-                        SourceFile = _sourceFileBuilder.GetSourceFile(nodeReader.Fragment2.Filename),
-                        LineStart = nodeReader.Fragment2.LineStart,
-                        LineEnd = nodeReader.Fragment2.LineEnd
-                    }
+                    }).ToArray()
                 };
                 Notify(newDuplicate);
             }
