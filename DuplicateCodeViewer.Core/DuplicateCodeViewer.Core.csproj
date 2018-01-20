@@ -44,6 +44,8 @@
     <Compile Include="Metadata\Fragment.cs" />
     <Compile Include="Metadata\SourceFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SourceFileBuilder\ISourceFileBuilderFlyWeight.cs" />
+    <Compile Include="SourceFileBuilder\SourceFileBuilderFlyWeight.cs" />
     <Compile Include="XmlParser\IXmlParserObserver.cs" />
     <Compile Include="XmlParser\XmlParserObservable.cs" />
   </ItemGroup>
