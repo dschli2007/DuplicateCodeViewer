@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DuplicatesReport ToolsVersion="111.0.20171222.81148">
+  <Statistics>
+    <CodebaseCost>104911</CodebaseCost>
+    <TotalDuplicatesCost>2250</TotalDuplicatesCost>
+    <TotalFragmentsCost>6589</TotalFragmentsCost>
+  </Statistics>
+  <Duplicates>
+    <Duplicate Cost="210">
+      <Fragment>
+        <FileName>..\ds\src\CodeToCSharp\CodeToCSharp.Delphi.Tests\MemberParser\PropertyParserTests.cs</FileName>
+        <OffsetRange Start="3027" End="3564"></OffsetRange>
+        <LineRange Start="72" End="82"></LineRange>
+      </Fragment>
+      <Fragment>
+        <FileName>..\ds\src\CodeToCSharp\CodeToCSharp.Delphi.Tests\MemberParser\PropertyParserTests.cs</FileName>
+        <OffsetRange Start="3911" End="4448"></OffsetRange>
+        <LineRange Start="92" End="102"></LineRange>
+      </Fragment>
+    </Duplicate>
+    <Duplicate Cost="158">
+      <Fragment>
+        <FileName>..\ds\src\CodeToCSharp\CodeToCSharp.Delphi.Tests\MemberParser\TypeInterfaceParserTests.cs</FileName>
+        <OffsetRange Start="1943" End="2357"></OffsetRange>
+        <LineRange Start="52" End="61"></LineRange>
+      </Fragment>
+      <Fragment>
+        <FileName>..\ds\src\CodeToCSharp\CodeToCSharp.Delphi.Tests\MemberParser\TypeInterfaceParserTests.cs</FileName>
+        <OffsetRange Start="2888" End="3302"></OffsetRange>
+        <LineRange Start="75" End="84"></LineRange>
+      </Fragment>
+    </Duplicate>
+    <Duplicate Cost="156">
+      <Fragment>
+        <FileName>..\ds\src\CodeToCSharp\CodeToCSharp.Delphi.Tests\Code\Expression\CodeToExpressionDatePartOfTests.cs</FileName>
+        <OffsetRange Start="0" End="1004"></OffsetRange>
+        <LineRange Start="1" End="31"></LineRange>
+      </Fragment>
+      <Fragment>
+        <FileName>..\ds\src\CodeToCSharp\CodeToCSharp.Delphi.Tests\Code\Expression\CodeToExpressionDayOfTheWeekTests.cs</FileName>
+        <OffsetRange Start="0" End="922"></OffsetRange>
+        <LineRange Start="1" End="26"></LineRange>
+      </Fragment>
+      <Fragment>
+        <FileName>..\ds\src\CodeToCSharp\CodeToCSharp.Delphi.Tests\Code\Expression\CodeToExpressionEncodeDecodeDateTests.cs</FileName>
+        <OffsetRange Start="0" End="1217"></OffsetRange>
+        <LineRange Start="1" End="32"></LineRange>
+      </Fragment>
+      <Fragment>
+        <FileName>..\ds\src\CodeToCSharp\CodeToCSharp.Delphi.Tests\Code\Expression\CodeToExpressionIncDecTests.cs</FileName>
+        <OffsetRange Start="0" End="1096"></OffsetRange>
+        <LineRange Start="1" End="34"></LineRange>
+      </Fragment>
+    </Duplicate>
+  </Duplicates>
+</DuplicatesReport>
