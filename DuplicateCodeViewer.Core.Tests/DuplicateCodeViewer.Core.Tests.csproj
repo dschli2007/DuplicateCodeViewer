@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fakes\SourceFileBuilderFlyWeightFake.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlParser\XmlParserObservableTests.cs" />
+    <Compile Include="Fakes\XmlParserObserverFake.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DuplicateCodeViewer.Core\DuplicateCodeViewer.Core.csproj">

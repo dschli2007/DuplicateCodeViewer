@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using DuplicateCodeViewer.Core.Metadata;
+﻿using DuplicateCodeViewer.Core.Metadata;
+using DuplicateCodeViewer.Core.Tests.Fakes;
 using DuplicateCodeViewer.Core.XmlParser;
 using NUnit.Framework;
 
@@ -10,14 +10,15 @@ namespace DuplicateCodeViewer.Core.Tests.XmlParser
     {
         private static XmlParserObservable CreateParser()
         {
-            return new XmlParserObservable();
+            var sourceFileBuilder = new SourceFileBuilderFlyWeightFake();
+            return new XmlParserObservable(sourceFileBuilder);
         }
 
         [Test]
         public void AddObserver_WhenValidObserver_ShouldAddObserverToObserverList()
         {
             var sampleDuplicate = new Duplicate { Cost = 123 };
-            var sampleObserver = new XmlParserObserverTest();
+            var sampleObserver = new XmlParserObserverFake();
 
             var parser = CreateParser();
             parser.AddObserver(sampleObserver);
@@ -31,7 +32,7 @@ namespace DuplicateCodeViewer.Core.Tests.XmlParser
         public void RemoveObserver_WhenObserverInTheList_ShouldRemoveObserverToObserverList()
         {
             var sampleDuplicate = new Duplicate { Cost = 123 };
-            var sampleObserver = new XmlParserObserverTest();
+            var sampleObserver = new XmlParserObserverFake();
 
             var parser = CreateParser();
             parser.AddObserver(sampleObserver);
@@ -43,15 +44,21 @@ namespace DuplicateCodeViewer.Core.Tests.XmlParser
             Assert.AreEqual(1, sampleObserver.Duplicates.Count);
         }
 
-    }
-
-    internal class XmlParserObserverTest : IXmlParserObserver
-    {
-        public List<Duplicate> Duplicates { get; } = new List<Duplicate>();
-
-        public void DuplicateParsed(Duplicate duplicate)
+        [Test]
+        public void Notify_WhenObserverInTheList_ShouldNotifyAllObservers()
         {
-            Duplicates.Add(duplicate);
+            var sampleDuplicate = new Duplicate { Cost = 123 };
+            var sampleObserver1 = new XmlParserObserverFake();
+            var sampleObserver2 = new XmlParserObserverFake();
+
+            var parser = CreateParser();
+            parser.AddObserver(sampleObserver1);
+            parser.AddObserver(sampleObserver2);
+            parser.Notify(sampleDuplicate);
+            
+            Assert.AreEqual(1, sampleObserver1.Duplicates.Count);
+            Assert.AreEqual(1, sampleObserver2.Duplicates.Count);
         }
+
     }
 }
