@@ -1,14 +1,30 @@
 ﻿using System;
 using System.Windows.Forms;
+using DuplicateCodeViewer.Core;
 using DuplicateCodeViewer.UI.UserInterfaceCommands;
 
 namespace DuplicateCodeViewer.UI
 {
     public partial class FormMain : Form
     {
+        private IController _controller;
+
         public FormMain()
         {
             InitializeComponent();
+            InitializeController();
+        }
+
+        private void InitializeController()
+        {
+            _controller = new Controller();
+            _controller.LoadCompleted += Controller_LoadCompleted            ;
+            UserInterfaceCommandExecutor.Controller = _controller;
+        }
+
+        private void Controller_LoadCompleted(object sender, EventArgs e)
+        {
+            
         }
 
         private void MnuQuit_Click(object sender, EventArgs e)

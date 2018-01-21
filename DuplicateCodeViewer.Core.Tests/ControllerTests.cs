@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
+using DuplicateCodeViewer.Core.Tests.Fakes;
 using NUnit.Framework;
 
 namespace DuplicateCodeViewer.Core.Tests
@@ -16,7 +17,7 @@ namespace DuplicateCodeViewer.Core.Tests
             {
                 var controller = new Controller();
                 Assert.AreEqual(0, controller.Duplicates.Count());
-                controller.Load(filename);
+                controller.Load(new XmlFileSourceFake(filename));
                 Assert.IsTrue(controller.Duplicates.Any());
             }
             finally

@@ -14,14 +14,14 @@ namespace DuplicateCodeViewer.Core
         private List<Duplicate> _duplicates = new List<Duplicate>();
         private List<SourceFile> _uniqueFiles = new List<SourceFile>();
 
-        public void LoadAsync(string filename)
+        public void LoadAsync(IXmlFileSource source)
         {
-            InternalLoad(filename, true);    
+            InternalLoad(source.Filename, true);    
         }
 
-        public void Load(string filename)
+        public void Load(IXmlFileSource source)
         {
-            InternalLoad(filename, false);
+            InternalLoad(source.Filename, false);
         }
 
         private void InternalLoad(string filename, bool async)

@@ -6,9 +6,9 @@ namespace DuplicateCodeViewer.Core
 {
     public interface IController
     {
-        void Load(string filename);
+        void Load(IXmlFileSource  source);
 
-        void LoadAsync(string filename);
+        void LoadAsync(IXmlFileSource source);
 
         event EventHandler LoadCompleted;
 
