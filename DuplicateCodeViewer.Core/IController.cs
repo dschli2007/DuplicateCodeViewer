@@ -6,9 +6,9 @@ namespace DuplicateCodeViewer.Core
 {
     public interface IController
     {
-        void Load(string filename);
+        void LoadAsync(string filename);
 
-        event EventHandler DataUpdated;
+        event EventHandler LoadCompleted;
 
         IEnumerable<Duplicate> Duplicates { get; }
 
