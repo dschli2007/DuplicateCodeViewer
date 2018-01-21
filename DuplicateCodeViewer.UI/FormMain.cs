@@ -25,18 +25,21 @@ namespace DuplicateCodeViewer.UI
             _controller.LoadCompleted += Controller_LoadCompleted;
             UserInterfaceCommandExecutor.Controller = _controller;
         }
-        
+
         private void Controller_LoadCompleted(object sender, EventArgs e)
         {
             _files = (from item in _controller.UniqueFiles
-                      orderby item.Filename 
+                      orderby item.Filename
                       select new FileInfo { SourceFile = item })
                       .ToList();
 
             Action updateGrid = () => { GridFiles.DataSource = _files; };
-            GridFiles.Invoke(updateGrid);
+            if (GridFiles.InvokeRequired)
+                GridFiles.Invoke(updateGrid);
+            else
+                updateGrid();
         }
-        
+
         private void MnuQuit_Click(object sender, EventArgs e)
         {
             Close();
@@ -68,9 +71,8 @@ namespace DuplicateCodeViewer.UI
 
         private void GridFiles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            // 
-
-
+            var fileInfo = _files[e.RowIndex];
+            FormViewFile.ShowFile(fileInfo);
         }
     }
 }
