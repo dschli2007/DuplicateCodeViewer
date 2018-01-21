@@ -6,7 +6,7 @@ using DuplicateCodeViewer.Core.SourceFileBuilder;
 
 namespace DuplicateCodeViewer.Core.XmlParser
 {
-    internal class XmlParserObservable
+    internal class XmlParserObservable : IXmlParserObservable
     {
         private readonly ISourceFileBuilderFlyWeight _sourceFileBuilder;
         private readonly List<IXmlParserObserver> _observers = new List<IXmlParserObserver>();
