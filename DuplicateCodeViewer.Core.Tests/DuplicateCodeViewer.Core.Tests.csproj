@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllerTests.cs" />
     <Compile Include="Fakes\SourceFileBuilderFlyWeightFake.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SourceFileBuilder\SourceFileBuilderFlyWeightTests.cs" />
