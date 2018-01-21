@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.mnuMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,20 +38,25 @@
             this.MnuQuit = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuSelectDupFinderExe = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.GridFiles = new System.Windows.Forms.DataGridView();
+            this.FILENAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FRAGMENTS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.COST = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mnuMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridFiles)).BeginInit();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // mnuMain
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.configurationToolStripMenuItem,
             this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(740, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.mnuMain.Location = new System.Drawing.Point(0, 0);
+            this.mnuMain.Name = "mnuMain";
+            this.mnuMain.Size = new System.Drawing.Size(940, 24);
+            this.mnuMain.TabIndex = 0;
+            this.mnuMain.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -120,17 +125,61 @@
             this.MnuAbout.Text = "About DuplicateCodeViewer";
             this.MnuAbout.Click += new System.EventHandler(this.MnuAbout_Click);
             // 
+            // GridFiles
+            // 
+            this.GridFiles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.GridFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridFiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.FILENAME,
+            this.FRAGMENTS,
+            this.COST});
+            this.GridFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GridFiles.Location = new System.Drawing.Point(0, 24);
+            this.GridFiles.MultiSelect = false;
+            this.GridFiles.Name = "GridFiles";
+            this.GridFiles.ReadOnly = true;
+            this.GridFiles.Size = new System.Drawing.Size(940, 474);
+            this.GridFiles.TabIndex = 1;
+            this.GridFiles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridFiles_CellDoubleClick);
+            // 
+            // FILENAME
+            // 
+            this.FILENAME.DataPropertyName = "SourceFile";
+            this.FILENAME.HeaderText = "Filename";
+            this.FILENAME.MinimumWidth = 200;
+            this.FILENAME.Name = "FILENAME";
+            this.FILENAME.ReadOnly = true;
+            this.FILENAME.Width = 200;
+            // 
+            // FRAGMENTS
+            // 
+            this.FRAGMENTS.DataPropertyName = "LazyFragments";
+            this.FRAGMENTS.HeaderText = "Fragments";
+            this.FRAGMENTS.Name = "FRAGMENTS";
+            this.FRAGMENTS.ReadOnly = true;
+            this.FRAGMENTS.Width = 81;
+            // 
+            // COST
+            // 
+            this.COST.DataPropertyName = "LazyCost";
+            this.COST.HeaderText = "Cost";
+            this.COST.Name = "COST";
+            this.COST.ReadOnly = true;
+            this.COST.Width = 53;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(740, 331);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.ClientSize = new System.Drawing.Size(940, 498);
+            this.Controls.Add(this.GridFiles);
+            this.Controls.Add(this.mnuMain);
+            this.MainMenuStrip = this.mnuMain;
             this.Name = "FormMain";
             this.Text = "DuplicateCodeViewer";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.mnuMain.ResumeLayout(false);
+            this.mnuMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridFiles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,7 +187,7 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip mnuMain;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MnuOpenProject;
         private System.Windows.Forms.ToolStripMenuItem MnuOpenXmlFile;
@@ -148,6 +197,10 @@
         private System.Windows.Forms.ToolStripMenuItem MnuSelectDupFinderExe;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MnuAbout;
+        private System.Windows.Forms.DataGridView GridFiles;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FILENAME;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FRAGMENTS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn COST;
     }
 }
 

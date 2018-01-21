@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using DuplicateCodeViewer.Core;
+using DuplicateCodeViewer.UI.Metadata;
 using DuplicateCodeViewer.UI.UserInterfaceCommands;
 
 namespace DuplicateCodeViewer.UI
@@ -8,6 +11,7 @@ namespace DuplicateCodeViewer.UI
     public partial class FormMain : Form
     {
         private IController _controller;
+        private List<FileInfo> _files;
 
         public FormMain()
         {
@@ -18,15 +22,21 @@ namespace DuplicateCodeViewer.UI
         private void InitializeController()
         {
             _controller = new Controller();
-            _controller.LoadCompleted += Controller_LoadCompleted            ;
+            _controller.LoadCompleted += Controller_LoadCompleted;
             UserInterfaceCommandExecutor.Controller = _controller;
         }
-
+        
         private void Controller_LoadCompleted(object sender, EventArgs e)
         {
-            
-        }
+            _files = (from item in _controller.UniqueFiles
+                      orderby item.Filename 
+                      select new FileInfo { SourceFile = item })
+                      .ToList();
 
+            Action updateGrid = () => { GridFiles.DataSource = _files; };
+            GridFiles.Invoke(updateGrid);
+        }
+        
         private void MnuQuit_Click(object sender, EventArgs e)
         {
             Close();
@@ -54,6 +64,13 @@ namespace DuplicateCodeViewer.UI
         {
             var command = new ShowAboutCommand();
             UserInterfaceCommandExecutor.Execute(command);
+        }
+
+        private void GridFiles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // 
+
+
         }
     }
 }
