@@ -17,6 +17,8 @@ namespace DuplicateCodeViewer.Core
         private List<Duplicate> _duplicates;
         private IXmlParserObservable _xmlParserObservable;
 
+        public bool Async { get; set; }
+
         public Loader(ISourceFileBuilderFlyWeight sourceFileBuilder, XmlDocument document, Action<Loader> completeCallback)
         {
             _sourceFileBuilder = sourceFileBuilder;
@@ -26,8 +28,15 @@ namespace DuplicateCodeViewer.Core
 
         public void Execute()
         {
-            var thread = new Thread(Work);
-            thread.Start();
+            if (Async)
+            {
+                var thread = new Thread(Work);
+                thread.Start();
+            }
+            else
+            {
+                Work();
+            }
         }
 
         private void Work()
@@ -56,5 +65,6 @@ namespace DuplicateCodeViewer.Core
         }
 
         public IEnumerable<SourceFile> UniqueSourceFiles => _sourceFileBuilder.GetAll();
+
     }
 }

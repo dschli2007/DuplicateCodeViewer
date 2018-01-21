@@ -16,15 +16,26 @@ namespace DuplicateCodeViewer.Core
 
         public void LoadAsync(string filename)
         {
+            InternalLoad(filename, true);    
+        }
+
+        public void Load(string filename)
+        {
+            InternalLoad(filename, false);
+        }
+
+        private void InternalLoad(string filename, bool async)
+        {
             var document = new XmlDocument();
             document.Load(filename);
             var relativeDirectory = Path.GetDirectoryName(filename);
             var sourceFileBuilder = SourceFileBuilderFactory.CreateInstance(relativeDirectory);
 
             var loader = new Loader(sourceFileBuilder, document, LoaderComplete);
+            loader.Async = async;
             loader.Execute();
         }
-
+        
         public event EventHandler LoadCompleted;
 
         public IEnumerable<Duplicate> Duplicates

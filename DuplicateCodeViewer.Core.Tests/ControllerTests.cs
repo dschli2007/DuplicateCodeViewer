@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using System.Xml;
+﻿using System.IO;
+using System.Linq;
 using NUnit.Framework;
 
 namespace DuplicateCodeViewer.Core.Tests
@@ -11,28 +11,39 @@ namespace DuplicateCodeViewer.Core.Tests
         [Test]
         public void Load_WhenValidFile_ShouldLoadTheFile()
         {
-            var document = CreateXmlDocument();
-            var controller = new Controller();
-            Assert.AreEqual(0, controller.Duplicates.Count());
-            //controller.LoadAsync(document);
-            //Assert.Greater(0, controller.Duplicates.Count());
+            var filename = CreateXmlFile();
+            try
+            {
+                var controller = new Controller();
+                Assert.AreEqual(0, controller.Duplicates.Count());
+                controller.Load(filename);
+                Assert.IsTrue(controller.Duplicates.Any());
+            }
+            finally
+            {
+                File.Delete(filename);
+            }
         }
 
-        private XmlDocument CreateXmlDocument()
+        private string CreateXmlFile()
         {
+            var filename = Path.GetTempFileName();
+
             const string resourceName = "DuplicateCodeViewer.Core.Tests.Resources.complete.xml";
             var stream = GetType().Assembly.GetManifestResourceStream(resourceName);
             try
             {
-                var document = new XmlDocument();
-                if (stream != null)
-                    document.Load(stream);
-                return document;
+                using (var fs = new FileStream(filename, FileMode.Create))
+                {
+                    stream?.CopyTo(fs);
+                }
             }
             finally
             {
                 stream?.Dispose();
             }
+
+            return filename;
         }
     }
 }
