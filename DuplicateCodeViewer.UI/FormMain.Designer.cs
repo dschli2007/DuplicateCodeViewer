@@ -30,13 +30,13 @@
         {
             this.mnuMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.configurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuOpenProject = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuOpenXmlFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.MnuQuit = new System.Windows.Forms.ToolStripMenuItem();
+            this.configurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuSelectDupFinderExe = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.GridFiles = new System.Windows.Forms.DataGridView();
             this.FILENAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,22 +69,6 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // configurationToolStripMenuItem
-            // 
-            this.configurationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MnuSelectDupFinderExe});
-            this.configurationToolStripMenuItem.Name = "configurationToolStripMenuItem";
-            this.configurationToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
-            this.configurationToolStripMenuItem.Text = "Configuration";
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MnuAbout});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
             // MnuOpenProject
             // 
             this.MnuOpenProject.Name = "MnuOpenProject";
@@ -111,12 +95,28 @@
             this.MnuQuit.Text = "Quit";
             this.MnuQuit.Click += new System.EventHandler(this.MnuQuit_Click);
             // 
+            // configurationToolStripMenuItem
+            // 
+            this.configurationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MnuSelectDupFinderExe});
+            this.configurationToolStripMenuItem.Name = "configurationToolStripMenuItem";
+            this.configurationToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
+            this.configurationToolStripMenuItem.Text = "Configuration";
+            // 
             // MnuSelectDupFinderExe
             // 
             this.MnuSelectDupFinderExe.Name = "MnuSelectDupFinderExe";
             this.MnuSelectDupFinderExe.Size = new System.Drawing.Size(192, 22);
             this.MnuSelectDupFinderExe.Text = "Select DupFinder.exe...";
             this.MnuSelectDupFinderExe.Click += new System.EventHandler(this.MnuSelectDupFinderExe_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MnuAbout});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
             // 
             // MnuAbout
             // 
@@ -127,6 +127,8 @@
             // 
             // GridFiles
             // 
+            this.GridFiles.AllowUserToAddRows = false;
+            this.GridFiles.AllowUserToDeleteRows = false;
             this.GridFiles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.GridFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridFiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {

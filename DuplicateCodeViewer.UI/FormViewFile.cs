@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using System.Windows.Forms;
-using DuplicateCodeViewer.UI.Metadata;
+using DuplicateCodeViewer.Core.Metadata;
+using DuplicateCodeViewer.UI.Helper;
 using FileInfo = DuplicateCodeViewer.UI.Metadata.FileInfo;
 
 namespace DuplicateCodeViewer.UI
@@ -18,38 +19,28 @@ namespace DuplicateCodeViewer.UI
         }
 
         private FileInfo _fileInfo;
+        private Duplicate _currentDuplicate;
+
+        private GridBuilderHelper _gridFileHelper;
+        private GridBuilderHelper _gridDuplicateFileHelper;
 
         internal void SetFileInfo(FileInfo fileInfo)
         {
             _fileInfo = fileInfo;
+            Text = fileInfo.SourceFile.Filename;
+            GridFile.AutoGenerateColumns = false;
+            GridDuplicateFiles.AutoGenerateColumns = false;
+            GridDuplicateFileContent.AutoGenerateColumns = false;
+
+            _gridFileHelper = new GridBuilderHelper(GridFile);
+            _gridDuplicateFileHelper = new GridBuilderHelper(GridDuplicateFileContent);
+
             UpdateGridFile();
         }
 
         private void UpdateGridFile()
         {
-            var fs = new FileStream(_fileInfo.SourceFile.Filename, FileMode.Open);
-            try
-            {
-                var lines = new List<LineInfo>();
-                using (var sr = new StreamReader(fs))
-                {
-                    while (!sr.EndOfStream)
-                    {
-                        var line = new LineInfo
-                        {
-                            Content = sr.ReadLine(),
-                            LineNumber = lines.Count + 1
-                        };
-                        lines.Add(line);
-                    }
-
-                    GridFile.DataSource = lines;
-                }
-            }
-            finally
-            {
-                fs?.Dispose();
-            }
+            _gridFileHelper.Update(_fileInfo.SourceFile, _fileInfo.LazyDuplicates);
         }
 
         public FormViewFile()
@@ -67,9 +58,60 @@ namespace DuplicateCodeViewer.UI
             Close();
         }
 
-        private void GridFile_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+
+
+        private void GridFile_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            //e.ro
+            var line = _gridFileHelper.Lines[e.RowIndex];
+            if (_currentDuplicate != line.Duplicate)
+            {
+                SetCurrentDuplicate(line.Duplicate);
+            }
+        }
+
+        private void SetCurrentDuplicate(Duplicate duplicate)
+        {
+            _currentDuplicate = duplicate;
+            UpdateGridDuplicateFiles();
+        }
+
+        private void UpdateGridDuplicateFiles()
+        {
+            if (_currentDuplicate != null)
+            {
+                var files = from item in _currentDuplicate.Fragments
+                            where item.SourceFile != _fileInfo.SourceFile
+                            select item.SourceFile;
+                GridDuplicateFiles.DataSource = files.ToList();
+            }
+            else
+            {
+                GridDuplicateFiles.DataSource = null;
+            }
+        }
+
+        private void GridDuplicateFiles_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            var dataSource = GridDuplicateFiles.DataSource as IList<SourceFile>;
+            if (dataSource != null)
+            {
+                var duplicatedFile = dataSource[e.RowIndex];
+                _gridDuplicateFileHelper.Update(duplicatedFile, new[] { _currentDuplicate });
+            }
+        }
+
+        private void GridDuplicateFiles_SelectionChanged(object sender, EventArgs e)
+        {
+            var dataSource = GridDuplicateFiles.DataSource as IList<SourceFile>;
+            if (dataSource != null && GridDuplicateFiles.CurrentRow != null)
+            {
+                var duplicatedFile = dataSource[GridDuplicateFiles.CurrentRow.Index];
+                _gridDuplicateFileHelper.Update(duplicatedFile, new[] { _currentDuplicate });
+            }
+            else
+            {
+                GridDuplicateFileContent.DataSource = null;
+            }
         }
     }
 }

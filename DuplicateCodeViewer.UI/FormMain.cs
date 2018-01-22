@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using DuplicateCodeViewer.Core;
+using DuplicateCodeViewer.Core.Metadata;
 using DuplicateCodeViewer.UI.Metadata;
 using DuplicateCodeViewer.UI.UserInterfaceCommands;
 
@@ -12,6 +13,7 @@ namespace DuplicateCodeViewer.UI
     {
         private IController _controller;
         private List<FileInfo> _files;
+        private List<Duplicate> _duplicates;
 
         public FormMain()
         {
@@ -33,7 +35,13 @@ namespace DuplicateCodeViewer.UI
                       select new FileInfo { SourceFile = item })
                       .ToList();
 
-            Action updateGrid = () => { GridFiles.DataSource = _files; };
+            _duplicates = (from item in _controller.Duplicates select item).ToList();
+
+            Action updateGrid = () =>
+            {
+                GridFiles.AutoGenerateColumns = false;
+                GridFiles.DataSource = _files;
+            };
             if (GridFiles.InvokeRequired)
                 GridFiles.Invoke(updateGrid);
             else
@@ -72,6 +80,17 @@ namespace DuplicateCodeViewer.UI
         private void GridFiles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var fileInfo = _files[e.RowIndex];
+
+            // ToDo: Load in other thread
+            if (fileInfo.LazyDuplicates == null)
+            {
+                var items = from item in _duplicates
+                    where item.Fragments.Any(f => f.SourceFile == fileInfo.SourceFile)
+                    select item;
+
+                fileInfo.LazyDuplicates = items.ToArray();
+            }
+            
             FormViewFile.ShowFile(fileInfo);
         }
     }
