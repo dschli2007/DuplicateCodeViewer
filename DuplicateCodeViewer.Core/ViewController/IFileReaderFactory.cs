@@ -1,7 +1,9 @@
-﻿namespace DuplicateCodeViewer.Core.ViewController
+﻿using DuplicateCodeViewer.Core.Metadata;
+
+namespace DuplicateCodeViewer.Core.ViewController
 {
     public interface IFileReaderFactory
     {
-        IFileReader CreateFileReader(string filename);
+        IFileReader CreateFileReader(SourceFile file);
     }
 }

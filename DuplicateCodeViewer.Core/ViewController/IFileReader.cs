@@ -1,6 +1,8 @@
-﻿namespace DuplicateCodeViewer.Core.ViewController
+﻿using System;
+
+namespace DuplicateCodeViewer.Core.ViewController
 {
-    public interface IFileReader
+    public interface IFileReader : IDisposable
     {
         bool CanRead { get; }
         string ReadLine();
