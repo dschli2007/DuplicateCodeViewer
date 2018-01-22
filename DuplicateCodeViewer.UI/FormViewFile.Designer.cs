@@ -240,7 +240,6 @@
             this.Name = "FormViewFile";
             this.Text = "FormViewFile";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FormViewFile_Load);
             this.MnuForm.ResumeLayout(false);
             this.MnuForm.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);

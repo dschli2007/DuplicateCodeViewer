@@ -16,7 +16,7 @@ namespace DuplicateCodeViewer.Core.ViewController
             _file = file;
             _duplicates = duplicates;
         }
-        
+
         public List<Line> ReadLines()
         {
             var lines = new List<Line>();
@@ -38,10 +38,13 @@ namespace DuplicateCodeViewer.Core.ViewController
 
             foreach (var duplicate in _duplicates)
             {
-                var fragment = duplicate.Fragments.First(f => f.SourceFile == _file);
-                for (var i = fragment.LineStart - 1; i < fragment.LineEnd; i++)
+                var fragment = duplicate.Fragments.FirstOrDefault(f => f.SourceFile == _file);
+                if (fragment != null)
                 {
-                    lines[i].Duplicate = duplicate;
+                    for (var i = fragment.LineStart - 1; i < fragment.LineEnd; i++)
+                    {
+                        lines[i].Duplicate = duplicate;
+                    }
                 }
             }
         }
