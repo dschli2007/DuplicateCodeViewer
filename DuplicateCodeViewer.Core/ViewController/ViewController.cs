@@ -5,6 +5,7 @@ namespace DuplicateCodeViewer.Core.ViewController
 {
     public class ViewController
     {
+        private readonly IFileReaderFactory _fileReaderFactory;
         private Fragment _currentFragment;
         private Duplicate _currentDuplicate;
 
@@ -13,6 +14,11 @@ namespace DuplicateCodeViewer.Core.ViewController
 
         public SourceFile CurrentFile { get; private set; }
         public Duplicate[] Duplicates { get; private set; }
+        
+        public ViewController(IFileReaderFactory fileReaderFactory)
+        {
+            _fileReaderFactory = fileReaderFactory;
+        }
 
         public void SetContext(SourceFile sourceFile, Duplicate[] duplicates)
         {

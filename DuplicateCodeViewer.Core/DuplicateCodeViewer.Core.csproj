@@ -52,6 +52,8 @@
     <Compile Include="SourceFileBuilder\ISourceFileBuilderFlyWeight.cs" />
     <Compile Include="SourceFileBuilder\SourceFileBuilderFactory.cs" />
     <Compile Include="SourceFileBuilder\SourceFileBuilderFlyWeight.cs" />
+    <Compile Include="ViewController\IFileReaderFactory.cs" />
+    <Compile Include="ViewController\IFileReader.cs" />
     <Compile Include="ViewController\ViewController.cs" />
     <Compile Include="XmlParser\DuplicateXmlNodeReader.cs" />
     <Compile Include="XmlParser\IXmlParserObservable.cs" />
