@@ -6,9 +6,9 @@ using System.Xml;
 using DuplicateCodeViewer.Core.Metadata;
 using DuplicateCodeViewer.Core.SourceFileBuilder;
 
-namespace DuplicateCodeViewer.Core
+namespace DuplicateCodeViewer.Core.LoadController
 {
-    public class Controller : IController
+    public class LoadControllerImplementation : ILoadController
     {
         private readonly object _dataLock = new object();
         private List<Duplicate> _duplicates = new List<Duplicate>();
@@ -31,7 +31,7 @@ namespace DuplicateCodeViewer.Core
             var relativeDirectory = Path.GetDirectoryName(filename);
             var sourceFileBuilder = SourceFileBuilderFactory.CreateInstance(relativeDirectory);
 
-            var loader = new Loader(sourceFileBuilder, document, LoaderComplete);
+            var loader = new InternalXmlParserObserver(sourceFileBuilder, document, LoaderComplete);
             loader.Async = async;
             loader.Execute();
         }
@@ -60,12 +60,12 @@ namespace DuplicateCodeViewer.Core
             }
         }
 
-        private void LoaderComplete(Loader loader)
+        private void LoaderComplete(InternalXmlParserObserver internalXmlParserObserver)
         {
             lock (_dataLock)
             {
-                _duplicates = loader.Duplicates.ToList();
-                _uniqueFiles = loader.UniqueSourceFiles.ToList();
+                _duplicates = internalXmlParserObserver.Duplicates.ToList();
+                _uniqueFiles = internalXmlParserObserver.UniqueSourceFiles.ToList();
             }
             LoadCompleted?.Invoke(this, EventArgs.Empty);
         }

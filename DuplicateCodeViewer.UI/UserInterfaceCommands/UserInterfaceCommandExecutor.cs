@@ -1,11 +1,11 @@
-﻿using DuplicateCodeViewer.Core;
+﻿using DuplicateCodeViewer.Core.LoadController;
 
 namespace DuplicateCodeViewer.UI.UserInterfaceCommands
 {
     internal static class UserInterfaceCommandExecutor
     {
 
-        public static IController Controller { get; set; }
+        public static ILoadController Controller { get; set; }
 
         public static void Execute(IUserInterfaceCommand command)
         {

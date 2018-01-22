@@ -14,9 +14,9 @@ namespace DuplicateCodeViewer.UI.Helper
         private readonly DataGridView _grid;
         private SourceFile _sourceFile;
         private Duplicate[] _duplicates;
-        private List<LineInfo> _lines;
+        private List<Line> _lines;
 
-        public List<LineInfo> Lines => _lines;
+        public List<Line> Lines => _lines;
 
         public GridBuilderHelper(DataGridView grid)
         {
@@ -38,15 +38,15 @@ namespace DuplicateCodeViewer.UI.Helper
             var fs = new FileStream(_sourceFile.Filename, FileMode.Open);
             try
             {
-                _lines = new List<LineInfo>();
+                _lines = new List<Line>();
                 using (var sr = new StreamReader(fs))
                 {
                     while (!sr.EndOfStream)
                     {
-                        var line = new LineInfo
+                        var line = new Line
                         {
-                            Content = sr.ReadLine(),
-                            LineNumber = _lines.Count + 1
+                            Content = sr.ReadLine()
+                            
                         };
                         _lines.Add(line);
                     }
@@ -64,6 +64,9 @@ namespace DuplicateCodeViewer.UI.Helper
 
         private void UpdateDuplicateInLines()
         {
+            if (_duplicates.Length == 0)
+                return;
+
             foreach (var duplicate in _duplicates)
             {
                 var fragment = duplicate.Fragments.First(f => f.SourceFile == _sourceFile);

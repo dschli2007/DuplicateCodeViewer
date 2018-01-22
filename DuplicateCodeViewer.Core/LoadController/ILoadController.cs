@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using DuplicateCodeViewer.Core.Metadata;
 
-namespace DuplicateCodeViewer.Core
+namespace DuplicateCodeViewer.Core.LoadController
 {
-    public interface IController
+    public interface ILoadController
     {
         void Load(IXmlFileSource  source);
 

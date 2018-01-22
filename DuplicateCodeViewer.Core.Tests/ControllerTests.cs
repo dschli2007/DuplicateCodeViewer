@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
+using DuplicateCodeViewer.Core.LoadController;
 using DuplicateCodeViewer.Core.Tests.Fakes;
 using NUnit.Framework;
 
@@ -15,7 +16,7 @@ namespace DuplicateCodeViewer.Core.Tests
             var filename = CreateXmlFile();
             try
             {
-                var controller = new Controller();
+                var controller = new LoadControllerImplementation();
                 Assert.AreEqual(0, controller.Duplicates.Count());
                 controller.Load(new XmlFileSourceFake(filename));
                 Assert.IsTrue(controller.Duplicates.Any());

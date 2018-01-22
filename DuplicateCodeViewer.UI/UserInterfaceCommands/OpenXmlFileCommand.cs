@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using DuplicateCodeViewer.Core;
+using DuplicateCodeViewer.Core.LoadController;
 
 namespace DuplicateCodeViewer.UI.UserInterfaceCommands
 {

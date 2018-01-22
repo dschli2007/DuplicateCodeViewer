@@ -1,4 +1,4 @@
-﻿namespace DuplicateCodeViewer.Core
+﻿namespace DuplicateCodeViewer.Core.LoadController
 {
     public interface IXmlFileSource
     {

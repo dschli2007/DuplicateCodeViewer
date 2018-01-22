@@ -59,7 +59,6 @@
     </Compile>
     <Compile Include="Helper\GridBuilderHelper.cs" />
     <Compile Include="Metadata\FileInfo.cs" />
-    <Compile Include="Metadata\LineInfo.cs" />
     <Compile Include="UserInterfaceCommands\IUserInterfaceCommand.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

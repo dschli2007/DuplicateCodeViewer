@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using DuplicateCodeViewer.Core;
+using DuplicateCodeViewer.Core.LoadController;
 using DuplicateCodeViewer.Core.Metadata;
 using DuplicateCodeViewer.UI.Metadata;
 using DuplicateCodeViewer.UI.UserInterfaceCommands;
@@ -11,7 +11,7 @@ namespace DuplicateCodeViewer.UI
 {
     public partial class FormMain : Form
     {
-        private IController _controller;
+        private ILoadController _controller;
         private List<FileInfo> _files;
         private List<Duplicate> _duplicates;
 
@@ -23,7 +23,7 @@ namespace DuplicateCodeViewer.UI
 
         private void InitializeController()
         {
-            _controller = new Controller();
+            _controller = new LoadControllerImplementation();
             _controller.LoadCompleted += Controller_LoadCompleted;
             UserInterfaceCommandExecutor.Controller = _controller;
         }

@@ -6,20 +6,20 @@ using DuplicateCodeViewer.Core.Metadata;
 using DuplicateCodeViewer.Core.SourceFileBuilder;
 using DuplicateCodeViewer.Core.XmlParser;
 
-namespace DuplicateCodeViewer.Core
+namespace DuplicateCodeViewer.Core.LoadController
 {
-    internal class Loader : IXmlParserObserver
+    internal class InternalXmlParserObserver : IXmlParserObserver
     {
         private readonly ISourceFileBuilderFlyWeight _sourceFileBuilder;
         private readonly XmlDocument _document;
-        private readonly Action<Loader> _completeCallback;
+        private readonly Action<InternalXmlParserObserver> _completeCallback;
 
         private List<Duplicate> _duplicates;
         private IXmlParserObservable _xmlParserObservable;
 
         public bool Async { get; set; }
 
-        public Loader(ISourceFileBuilderFlyWeight sourceFileBuilder, XmlDocument document, Action<Loader> completeCallback)
+        public InternalXmlParserObserver(ISourceFileBuilderFlyWeight sourceFileBuilder, XmlDocument document, Action<InternalXmlParserObserver> completeCallback)
         {
             _sourceFileBuilder = sourceFileBuilder;
             _document = document;
