@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MnuForm = new System.Windows.Forms.MenuStrip();
             this.MnuPrior = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuNext = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,12 +75,14 @@
             this.MnuPrior.Name = "MnuPrior";
             this.MnuPrior.Size = new System.Drawing.Size(44, 20);
             this.MnuPrior.Text = "Prior";
+            this.MnuPrior.Click += new System.EventHandler(this.MnuPrior_Click);
             // 
             // MnuNext
             // 
             this.MnuNext.Name = "MnuNext";
             this.MnuNext.Size = new System.Drawing.Size(43, 20);
             this.MnuNext.Text = "Next";
+            this.MnuNext.Click += new System.EventHandler(this.MnuNext_Click);
             // 
             // MnuClose
             // 
@@ -122,25 +124,26 @@
             this.GridFile.Name = "GridFile";
             this.GridFile.ReadOnly = true;
             this.GridFile.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridFile.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridFile.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.GridFile.RowHeadersWidth = 60;
             this.GridFile.Size = new System.Drawing.Size(517, 659);
             this.GridFile.TabIndex = 2;
+            this.GridFile.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GridFile_DataBindingComplete);
             this.GridFile.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridFile_RowEnter);
             // 
             // CONTENT
             // 
             this.CONTENT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.CONTENT.DataPropertyName = "Content";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CONTENT.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CONTENT.DefaultCellStyle = dataGridViewCellStyle9;
             this.CONTENT.HeaderText = "Content";
             this.CONTENT.MinimumWidth = 100;
             this.CONTENT.Name = "CONTENT";
@@ -188,8 +191,8 @@
             // 
             this.FILENAME.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.FILENAME.DataPropertyName = "Filename";
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.FILENAME.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.FILENAME.DefaultCellStyle = dataGridViewCellStyle12;
             this.FILENAME.HeaderText = "Duplicate filenames";
             this.FILENAME.Name = "FILENAME";
             this.FILENAME.ReadOnly = true;
@@ -209,17 +212,18 @@
             this.GridDuplicateFileContent.Location = new System.Drawing.Point(0, 0);
             this.GridDuplicateFileContent.Name = "GridDuplicateFileContent";
             this.GridDuplicateFileContent.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridDuplicateFileContent.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridDuplicateFileContent.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.GridDuplicateFileContent.RowHeadersWidth = 60;
             this.GridDuplicateFileContent.Size = new System.Drawing.Size(591, 352);
             this.GridDuplicateFileContent.TabIndex = 0;
+            this.GridDuplicateFileContent.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GridDuplicateFileContent_DataBindingComplete);
             // 
             // DUPLICATECONTENT
             // 

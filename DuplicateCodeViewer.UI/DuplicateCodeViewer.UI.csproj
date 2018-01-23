@@ -57,7 +57,7 @@
     <Compile Include="FormViewFile.Designer.cs">
       <DependentUpon>FormViewFile.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helper\GridBuilderHelper.cs" />
+    <Compile Include="Helper\DataGridViewHelper.cs" />
     <Compile Include="Metadata\FileInfo.cs" />
     <Compile Include="UserInterfaceCommands\IUserInterfaceCommand.cs" />
     <Compile Include="Program.cs" />

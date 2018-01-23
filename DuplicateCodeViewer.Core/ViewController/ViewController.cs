@@ -69,6 +69,8 @@ namespace DuplicateCodeViewer.Core.ViewController
                               select item.SourceFile);
             }
             OnUpdateDuplicateFiles?.Invoke(this, list);
+            if(list.Count == 0)
+                OnUpdateDuplicateFileLines?.Invoke(this, new List<Line>());
         }
 
         private Fragment GetFragmentFromLine(int lineNumber)

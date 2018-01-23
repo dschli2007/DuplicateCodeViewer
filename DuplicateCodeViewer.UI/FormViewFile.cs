@@ -3,54 +3,35 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using DuplicateCodeViewer.Core.Metadata;
 using DuplicateCodeViewer.Core.ViewController;
+using DuplicateCodeViewer.UI.Helper;
 using FileInfo = DuplicateCodeViewer.UI.Metadata.FileInfo;
 
 namespace DuplicateCodeViewer.UI
 {
     public partial class FormViewFile : Form
     {
-
         internal static void ShowFile(FileInfo fileInfo)
         {
             var newForm = new FormViewFile();
             newForm.SetFileInfo(fileInfo);
             newForm.Show();
         }
-
-
+        
         private ViewController _controller;
-
-
-        private FileInfo _fileInfo;
-
-
-        //private GridBuilderHelper _gridFileHelper;
-        //private GridBuilderHelper _gridDuplicateFileHelper;
-
+        
         internal void SetFileInfo(FileInfo fileInfo)
         {
-            _fileInfo = fileInfo;
             Text = fileInfo.SourceFile.Filename;
 
+            DataGridViewHelper.SetSourceGridFormats(GridFile);
+            DataGridViewHelper.SetSourceGridFormats(GridDuplicateFileContent);
+            DataGridViewHelper.SetFilesGridFormats(GridDuplicateFiles);
+            
             _controller = new ViewController(new FileReaderFactoryImplementation());
             _controller.OnUpdateFileLines += ControllerOnOnUpdateFileLines;
             _controller.OnUpdateDuplicateFiles += Controller_OnUpdateDuplicateFiles;
             _controller.OnUpdateDuplicateFileLines += Controller_OnUpdateDuplicateFileLines;
-
-
-            _controller.SetContext(_fileInfo.SourceFile, _fileInfo.LazyDuplicates);
-
-
-
-
-            GridFile.AutoGenerateColumns = false;
-            GridDuplicateFiles.AutoGenerateColumns = false;
-            GridDuplicateFileContent.AutoGenerateColumns = false;
-
-            //_gridFileHelper = new GridBuilderHelper(GridFile);
-            // _gridDuplicateFileHelper = new GridBuilderHelper(GridDuplicateFileContent);
-
-            //UpdateGridFile();
+            _controller.SetContext(fileInfo.SourceFile, fileInfo.LazyDuplicates);
         }
 
         private void Controller_OnUpdateDuplicateFileLines(object sender, IList<Line> e)
@@ -109,6 +90,28 @@ namespace DuplicateCodeViewer.UI
             {
                 _controller.SetCurrentDuplicateFile(null);
             }
+        }
+
+        private void GridFile_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            DataGridViewHelper.SetStyleToGrid(GridFile);
+            DataGridViewHelper.SelectFirstDuplicate(GridFile);
+        }
+
+        private void GridDuplicateFileContent_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            DataGridViewHelper.SetStyleToGrid(GridDuplicateFileContent);
+            DataGridViewHelper.SelectFirstDuplicate(GridDuplicateFileContent);
+        }
+
+        private void MnuPrior_Click(object sender, EventArgs e)
+        {
+            DataGridViewHelper.SelectPriorDuplicate(GridFile);
+        }
+
+        private void MnuNext_Click(object sender, EventArgs e)
+        {
+            DataGridViewHelper.SelectNextDuplicate(GridFile);
         }
     }
 }
