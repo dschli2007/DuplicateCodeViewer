@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using DuplicateCodeViewer.Core.Metadata;
 using DuplicateCodeViewer.Core.ViewController;
@@ -26,7 +27,8 @@ namespace DuplicateCodeViewer.UI
             DataGridViewHelper.SetSourceGridFormats(GridFile);
             DataGridViewHelper.SetSourceGridFormats(GridDuplicateFileContent);
             DataGridViewHelper.SetFilesGridFormats(GridDuplicateFiles);
-            
+            GridFile.Columns[0].HeaderText = Path.GetFileName(fileInfo.SourceFile.Filename);
+
             _controller = new ViewController(new FileReaderFactoryImplementation());
             _controller.OnUpdateFileLines += ControllerOnOnUpdateFileLines;
             _controller.OnUpdateDuplicateFiles += Controller_OnUpdateDuplicateFiles;
