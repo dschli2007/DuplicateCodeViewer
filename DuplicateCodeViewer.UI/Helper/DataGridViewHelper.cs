@@ -12,11 +12,58 @@ namespace DuplicateCodeViewer.UI.Helper
         {
             grid.AutoGenerateColumns = false;
             grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-            foreach (DataGridViewColumn gridColumn in grid.Columns)
+
+
+            grid.AllowUserToAddRows = false;
+            grid.AllowUserToDeleteRows = false;
+            grid.AllowUserToResizeRows = false;
+            grid.BackgroundColor = SystemColors.Window;
+            grid.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+
+            var cellStyle = new DataGridViewCellStyle
             {
-                gridColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                gridColumn.Width = 4000;
-            }
+                Alignment = DataGridViewContentAlignment.MiddleLeft,
+                BackColor = SystemColors.Window,
+                Font = new Font("Consolas", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0),
+                ForeColor = SystemColors.ControlText,
+                SelectionBackColor = SystemColors.Highlight,
+                SelectionForeColor = SystemColors.HighlightText,
+                WrapMode = DataGridViewTriState.False
+            };
+            
+            grid.DefaultCellStyle = cellStyle;
+            grid.ReadOnly = true;
+            grid.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            var rowHeaderStyle = new DataGridViewCellStyle
+            {
+                Alignment = DataGridViewContentAlignment.MiddleRight,
+                BackColor = SystemColors.Control,
+                Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular,
+                    GraphicsUnit.Point, 0),
+                ForeColor = SystemColors.WindowText,
+                SelectionBackColor = SystemColors.Highlight,
+                SelectionForeColor = SystemColors.HighlightText,
+                //WrapMode = System.Windows.Forms.DataGridViewTriState.True
+            };
+            grid.RowHeadersDefaultCellStyle = rowHeaderStyle;
+            grid.RowHeadersWidth = 60;
+
+
+            var contentColumn = new DataGridViewTextBoxColumn
+            {
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
+                DataPropertyName = "Content",
+                DefaultCellStyle = cellStyle,
+                MinimumWidth = 500,
+                HeaderText = "",
+                Name = grid.Name + "_CONTENT",
+                ReadOnly = true,
+                Width = 4000
+            };
+            
+            grid.Columns.AddRange(contentColumn);
         }
 
         public static void SetFilesGridFormats(DataGridView grid)
@@ -99,6 +146,6 @@ namespace DuplicateCodeViewer.UI.Helper
             }
         }
 
-        
+
     }
 }
