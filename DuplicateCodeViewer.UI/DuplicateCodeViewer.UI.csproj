@@ -66,6 +66,7 @@
     <Compile Include="Forms\FormViewFile.Designer.cs">
       <DependentUpon>FormViewFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\AsyncLazyPropertiesLoader.cs" />
     <Compile Include="Helper\DataGridViewHelper.cs" />
     <Compile Include="Metadata\FileInfo.cs" />
     <Compile Include="UserInterfaceCommands\IUserInterfaceCommand.cs" />

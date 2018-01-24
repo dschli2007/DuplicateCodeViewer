@@ -178,6 +178,7 @@
             this.Controls.Add(this.mnuMain);
             this.MainMenuStrip = this.mnuMain;
             this.Name = "FormMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DuplicateCodeViewer";
             this.mnuMain.ResumeLayout(false);
             this.mnuMain.PerformLayout();

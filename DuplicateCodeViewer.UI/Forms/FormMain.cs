@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DuplicateCodeViewer.Core.LoadController;
 using DuplicateCodeViewer.Core.Metadata;
+using DuplicateCodeViewer.UI.Helper;
 using DuplicateCodeViewer.UI.Metadata;
 using DuplicateCodeViewer.UI.UserInterfaceCommands;
 
@@ -46,6 +47,18 @@ namespace DuplicateCodeViewer.UI.Forms
                 GridFiles.Invoke(updateGrid);
             else
                 updateGrid();
+
+            var lazyLoader = new AsyncLazyPropertiesLoader(_files, _duplicates);
+            lazyLoader.OnItemUpdated += (p1, p2) =>
+            {
+                Action update = () => { GridFiles.Refresh(); };
+
+                if (GridFiles.InvokeRequired)
+                    GridFiles.Invoke(update);
+                else
+                    update();
+            };
+            lazyLoader.Execute();
         }
 
         private void MnuQuit_Click(object sender, EventArgs e)
@@ -79,18 +92,21 @@ namespace DuplicateCodeViewer.UI.Forms
 
         private void GridFiles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0)
+                return;
+
             var fileInfo = _files[e.RowIndex];
 
             // ToDo: Load in other thread
             if (fileInfo.LazyDuplicates == null)
             {
                 var items = from item in _duplicates
-                    where item.Fragments.Any(f => f.SourceFile == fileInfo.SourceFile)
-                    select item;
+                            where item.Fragments.Any(f => f.SourceFile == fileInfo.SourceFile)
+                            select item;
 
                 fileInfo.LazyDuplicates = items.ToArray();
             }
-            
+
             FormViewFile.ShowFile(fileInfo);
         }
     }
