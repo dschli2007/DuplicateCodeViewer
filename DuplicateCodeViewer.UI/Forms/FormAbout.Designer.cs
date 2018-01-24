@@ -1,4 +1,4 @@
-﻿namespace DuplicateCodeViewer.UI
+﻿namespace DuplicateCodeViewer.UI.Forms
 {
     partial class FormAbout
     {

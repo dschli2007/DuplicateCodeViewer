@@ -7,7 +7,7 @@ using DuplicateCodeViewer.Core.Metadata;
 using DuplicateCodeViewer.UI.Metadata;
 using DuplicateCodeViewer.UI.UserInterfaceCommands;
 
-namespace DuplicateCodeViewer.UI
+namespace DuplicateCodeViewer.UI.Forms
 {
     public partial class FormMain : Form
     {

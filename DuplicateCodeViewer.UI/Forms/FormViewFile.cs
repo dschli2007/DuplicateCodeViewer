@@ -7,7 +7,7 @@ using DuplicateCodeViewer.Core.ViewController;
 using DuplicateCodeViewer.UI.Helper;
 using FileInfo = DuplicateCodeViewer.UI.Metadata.FileInfo;
 
-namespace DuplicateCodeViewer.UI
+namespace DuplicateCodeViewer.UI.Forms
 {
     public partial class FormViewFile : Form
     {

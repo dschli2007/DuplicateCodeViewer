@@ -1,4 +1,6 @@
-﻿namespace DuplicateCodeViewer.UI.UserInterfaceCommands
+﻿using DuplicateCodeViewer.UI.Forms;
+
+namespace DuplicateCodeViewer.UI.UserInterfaceCommands
 {
     internal class ShowAboutCommand : IUserInterfaceCommand
     {
