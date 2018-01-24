@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mnuMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuOpenProject = new System.Windows.Forms.ToolStripMenuItem();
@@ -130,16 +132,33 @@
             this.GridFiles.AllowUserToAddRows = false;
             this.GridFiles.AllowUserToDeleteRows = false;
             this.GridFiles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridFiles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.GridFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridFiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FILENAME,
             this.FRAGMENTS,
             this.COST});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridFiles.DefaultCellStyle = dataGridViewCellStyle2;
             this.GridFiles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridFiles.Location = new System.Drawing.Point(0, 24);
             this.GridFiles.MultiSelect = false;
             this.GridFiles.Name = "GridFiles";
             this.GridFiles.ReadOnly = true;
+            this.GridFiles.RowHeadersVisible = false;
             this.GridFiles.Size = new System.Drawing.Size(940, 474);
             this.GridFiles.TabIndex = 1;
             this.GridFiles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridFiles_CellDoubleClick);
@@ -159,7 +178,7 @@
             this.FRAGMENTS.HeaderText = "Fragments";
             this.FRAGMENTS.Name = "FRAGMENTS";
             this.FRAGMENTS.ReadOnly = true;
-            this.FRAGMENTS.Width = 81;
+            this.FRAGMENTS.Width = 95;
             // 
             // COST
             // 
@@ -167,7 +186,7 @@
             this.COST.HeaderText = "Cost";
             this.COST.Name = "COST";
             this.COST.ReadOnly = true;
-            this.COST.Width = 53;
+            this.COST.Width = 60;
             // 
             // FormMain
             // 
