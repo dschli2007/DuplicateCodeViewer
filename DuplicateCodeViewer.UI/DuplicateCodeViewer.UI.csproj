@@ -48,22 +48,22 @@
   <ItemGroup>
     <Compile Include="Configuration\AppConfigurationImplementation.cs" />
     <Compile Include="Configuration\IAppConfiguration.cs" />
-    <Compile Include="FormAbout.cs">
+    <Compile Include="Forms\FormAbout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAbout.Designer.cs">
+    <Compile Include="Forms\FormAbout.Designer.cs">
       <DependentUpon>FormAbout.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMain.cs">
+    <Compile Include="Forms\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
+    <Compile Include="Forms\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormViewFile.cs">
+    <Compile Include="Forms\FormViewFile.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormViewFile.Designer.cs">
+    <Compile Include="Forms\FormViewFile.Designer.cs">
       <DependentUpon>FormViewFile.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\DataGridViewHelper.cs" />
@@ -76,13 +76,13 @@
     <Compile Include="UserInterfaceCommands\SelectDupFinderExeCommand.cs" />
     <Compile Include="UserInterfaceCommands\ShowAboutCommand.cs" />
     <Compile Include="UserInterfaceCommands\UserInterfaceCommandExecutor.cs" />
-    <EmbeddedResource Include="FormAbout.resx">
+    <EmbeddedResource Include="Forms\FormAbout.resx">
       <DependentUpon>FormAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMain.resx">
+    <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormViewFile.resx">
+    <EmbeddedResource Include="Forms\FormViewFile.resx">
       <DependentUpon>FormViewFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
