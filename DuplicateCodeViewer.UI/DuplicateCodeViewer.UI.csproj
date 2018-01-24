@@ -48,6 +48,12 @@
   <ItemGroup>
     <Compile Include="Configuration\AppConfigurationImplementation.cs" />
     <Compile Include="Configuration\IAppConfiguration.cs" />
+    <Compile Include="FormAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAbout.Designer.cs">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,9 @@
     <Compile Include="UserInterfaceCommands\SelectDupFinderExeCommand.cs" />
     <Compile Include="UserInterfaceCommands\ShowAboutCommand.cs" />
     <Compile Include="UserInterfaceCommands\UserInterfaceCommandExecutor.cs" />
+    <EmbeddedResource Include="FormAbout.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

@@ -4,7 +4,10 @@
     {
         public void Execute()
         {
-            throw new System.NotImplementedException();
+            using (var formAbout = new FormAbout())
+            {
+                formAbout.ShowDialog();
+            }
         }
     }
 }
