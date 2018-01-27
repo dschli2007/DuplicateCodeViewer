@@ -27,7 +27,7 @@ namespace DuplicateCodeViewer.Core.SourceFileBuilder
                     return _files[filename];
 
                 var absoluteFilename = GetAbsoluteFilename(filename);
-                var newFile = new SourceFile { Filename = absoluteFilename };
+                var newFile = new SourceFile(absoluteFilename);
                 _files[filename] = newFile;
                 return newFile;
             }

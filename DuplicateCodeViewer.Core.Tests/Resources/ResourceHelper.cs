@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
 using System.Xml;
 
 namespace DuplicateCodeViewer.Core.Tests.Resources
@@ -23,24 +23,33 @@ namespace DuplicateCodeViewer.Core.Tests.Resources
             return result;
         }
 
-        public static string CreateXmlFile()
+        public static TempFile CreateXmlFile()
         {
-            var filename = Path.GetTempFileName();
+            var result = new TempFile();
 
             var stream = typeof(ResourceHelper).Assembly.GetManifestResourceStream(ResourceName);
             try
             {
-                using (var fs = new FileStream(filename, FileMode.Create))
-                {
-                    stream?.CopyTo(fs);
-                }
+                result.WriteStreamToFile(stream);
             }
             finally
             {
                 stream?.Dispose();
             }
 
-            return filename;
+            return result;
+        }
+
+        public static TempFile CreateSourceFile(int lines, string pattern)
+        {
+            var list = new List<string>(lines);
+            while (list.Count < lines)
+                list.Add(string.Format(pattern, list.Count + 1));
+            
+            var result = new TempFile();
+            result.WriteStringsToFile(list);
+            
+            return result;
         }
 
     }

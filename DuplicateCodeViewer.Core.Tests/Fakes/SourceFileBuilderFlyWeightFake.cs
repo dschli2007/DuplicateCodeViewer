@@ -7,7 +7,7 @@ namespace DuplicateCodeViewer.Core.Tests.Fakes
 {
     internal class SourceFileBuilderFlyWeightFake : ISourceFileBuilderFlyWeight
     {
-        private List<SourceFile> _allFiles = new List<SourceFile>();
+        private readonly List<SourceFile> _allFiles = new List<SourceFile>();
 
         public SourceFile GetSourceFile(string filename)
         {
@@ -15,7 +15,7 @@ namespace DuplicateCodeViewer.Core.Tests.Fakes
             if (result != null)
                 return result;
 
-            result = new SourceFile { Filename = filename };
+            result = new SourceFile(filename);
             _allFiles.Add(result);
             return result;
         }
