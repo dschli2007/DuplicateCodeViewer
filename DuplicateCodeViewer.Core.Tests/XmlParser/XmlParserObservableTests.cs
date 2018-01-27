@@ -11,7 +11,7 @@ namespace DuplicateCodeViewer.Core.Tests.XmlParser
     {
         private static XmlParserObservable CreateParser()
         {
-            var sourceFileBuilder = new SourceFileBuilderFlyWeightFake();
+            var sourceFileBuilder = new SourceFileFlyWeightFake();
             return new XmlParserObservable(sourceFileBuilder);
         }
 

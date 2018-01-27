@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using DuplicateCodeViewer.Core.Metadata;
-using DuplicateCodeViewer.Core.SourceFileBuilder;
+using DuplicateCodeViewer.Core.SourceFileFlyWeight;
 
 namespace DuplicateCodeViewer.Core.Tests.Fakes
 {
-    internal class SourceFileBuilderFlyWeightFake : ISourceFileBuilderFlyWeight
+    internal class SourceFileFlyWeightFake : ISourceFileFlyWeight
     {
         private readonly List<SourceFile> _allFiles = new List<SourceFile>();
 

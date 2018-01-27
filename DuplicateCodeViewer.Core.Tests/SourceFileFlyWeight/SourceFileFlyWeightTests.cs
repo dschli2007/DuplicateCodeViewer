@@ -1,24 +1,24 @@
-﻿using DuplicateCodeViewer.Core.SourceFileBuilder;
+﻿using DuplicateCodeViewer.Core.SourceFileFlyWeight;
 using NUnit.Framework;
 
-namespace DuplicateCodeViewer.Core.Tests.SourceFileBuilder
+namespace DuplicateCodeViewer.Core.Tests.SourceFileFlyWeight
 {
     [TestFixture]
-    public class SourceFileBuilderFlyWeightTests
+    public class SourceFileFlyWeightTests
     {
 
-        private static ISourceFileBuilderFlyWeight CreateBuilder()
+        private static ISourceFileFlyWeight CreateTestedObject()
         {
-            return new SourceFileBuilderFlyWeight(@"c:\temp");
+            return new Core.SourceFileFlyWeight.SourceFileFlyWeight(@"c:\temp");
         }
 
         [TestCase("file1.txt")]
         [TestCase("file2.txt")]
         public void GetSourceFile_WhenSameFileName_ShoudReturnSameObject(string filename)
         {
-            var builder = CreateBuilder();
-            var result1 = builder.GetSourceFile(filename);
-            var result2 = builder.GetSourceFile(filename);
+            var obj = CreateTestedObject();
+            var result1 = obj.GetSourceFile(filename);
+            var result2 = obj.GetSourceFile(filename);
             Assert.AreSame(result1, result2);
         }
 
@@ -27,11 +27,11 @@ namespace DuplicateCodeViewer.Core.Tests.SourceFileBuilder
         {
             var file1 = "a.txt";
             var file2 = "b.txt";
-            var builder = CreateBuilder();
-            var result1 = builder.GetSourceFile(file1);
-            var result2 = builder.GetSourceFile(file2);
-            var result1A = builder.GetSourceFile(file1);
-            var result2A = builder.GetSourceFile(file2);
+            var obj = CreateTestedObject();
+            var result1 = obj.GetSourceFile(file1);
+            var result2 = obj.GetSourceFile(file2);
+            var result1A = obj.GetSourceFile(file1);
+            var result2A = obj.GetSourceFile(file2);
             Assert.AreSame(result1, result1A);
             Assert.AreSame(result2, result2A);
         }
@@ -43,8 +43,8 @@ namespace DuplicateCodeViewer.Core.Tests.SourceFileBuilder
         public void GetSourceFile_WhenRelativeDirectory_ShouldSetAbsolutePathToFile(string relativeDirectory,
             string filename, string expectedFilename)
         {
-            var builder = new SourceFileBuilderFlyWeight(relativeDirectory);
-            var file = builder.GetSourceFile(filename);
+            var obj = new Core.SourceFileFlyWeight.SourceFileFlyWeight(relativeDirectory);
+            var file = obj.GetSourceFile(filename);
             var filenameObtained = file.Filename;
             Assert.AreEqual(expectedFilename, filenameObtained);
         }

@@ -16,7 +16,7 @@ namespace DuplicateCodeViewer.Core.Tests.LoadController
             var lockObject = new object();
             var completed = false;
             var document = ResourceHelper.CreateXmlDocument();
-            var obj = new InternalXmlParserObserver(new SourceFileBuilderFlyWeightFake(), document, observer =>
+            var obj = new InternalXmlParserObserver(new SourceFileFlyWeightFake(), document, observer =>
             {
                 lock (lockObject)
                 {
@@ -45,7 +45,7 @@ namespace DuplicateCodeViewer.Core.Tests.LoadController
         {
             var completed = false;
             var document = ResourceHelper.CreateXmlDocument();
-            var obj = new InternalXmlParserObserver(new SourceFileBuilderFlyWeightFake(), document, observer =>
+            var obj = new InternalXmlParserObserver(new SourceFileFlyWeightFake(), document, observer =>
             {
                 completed = true;
             });
@@ -61,7 +61,7 @@ namespace DuplicateCodeViewer.Core.Tests.LoadController
        public void Duplicates_AfterExecuted_ShouldReturnDuplicates()
        {
            var document = ResourceHelper.CreateXmlDocument();
-           var obj = new InternalXmlParserObserver(new SourceFileBuilderFlyWeightFake(), document, observer => { })
+           var obj = new InternalXmlParserObserver(new SourceFileFlyWeightFake(), document, observer => { })
                {
                    Async = false
                };
@@ -75,7 +75,7 @@ namespace DuplicateCodeViewer.Core.Tests.LoadController
         public void UniqueSourceFiles_AfterExecuted_ShouldReturnUniqueFileList()
         {
             var document = ResourceHelper.CreateXmlDocument();
-            var obj = new InternalXmlParserObserver(new SourceFileBuilderFlyWeightFake(), document, observer => { })
+            var obj = new InternalXmlParserObserver(new SourceFileFlyWeightFake(), document, observer => { })
             {
                 Async = false
             };
