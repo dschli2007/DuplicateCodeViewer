@@ -58,6 +58,75 @@ namespace DuplicateCodeViewer.Core.Tests.ViewController
         }
 
         [Test]
+        public void SetContext_WhenSingleFileHasDuplicates_ShouldNotSetDuplicateShowdInDuplicateFile()
+        {
+            const string testFilename = "test.cs";
+
+            var factory = new FileReaderFactoryFake();
+            factory.FileContents[testFilename] = new[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m" };
+
+            var sourceFile = new SourceFile(testFilename);
+            var duplicate = new Duplicate
+            {
+                Fragments = new[]
+                {
+                    new Fragment
+                    {
+                        SourceFile = sourceFile,
+                        LineStart = 2,
+                        LineEnd = 3
+                    },
+                    new Fragment
+                    {
+                        SourceFile = sourceFile,
+                        LineStart = 5,
+                        LineEnd = 6
+                    },
+                    new Fragment
+                    {
+                        SourceFile = sourceFile,
+                        LineStart = 8,
+                        LineEnd = 9
+                    }
+                }
+            };
+
+            IList<SourceFile> duplicatesObtained = new List<SourceFile>();
+            IList<Line> duplicateLines = new List<Line>();
+
+            var obj = new Core.ViewController.ViewController(factory);
+            obj.OnUpdateDuplicateFiles += (sender, list) =>
+            {
+                duplicatesObtained = list;
+            };
+            obj.OnUpdateDuplicateFileLines += (sender, list) => { duplicateLines = list; };
+
+            obj.SetContext(sourceFile, new[] { duplicate });
+            obj.SetCurrentFileLine(1);
+            Assert.AreEqual(0, duplicatesObtained.Count);
+            Assert.AreEqual(0, duplicateLines.Count);
+
+            obj.SetCurrentFileLine(2);
+            obj.SetCurrentDuplicateFile(sourceFile);
+            Assert.IsNull(duplicateLines[1].Duplicate);
+            Assert.IsNull(duplicateLines[2].Duplicate);
+            Assert.IsNotNull(duplicateLines[4].Duplicate);
+            Assert.IsNotNull(duplicateLines[5].Duplicate);
+
+            obj.SetCurrentFileLine(5);
+            obj.SetCurrentDuplicateFile(sourceFile);
+            Assert.IsNull(duplicateLines[4].Duplicate);
+            Assert.IsNull(duplicateLines[5].Duplicate);
+            Assert.IsNotNull(duplicateLines[1].Duplicate);
+            Assert.IsNotNull(duplicateLines[2].Duplicate);
+
+            obj.SetCurrentFileLine(1);
+            obj.SetCurrentDuplicateFile(null);
+            Assert.AreEqual(0, duplicateLines.Count);
+
+        }
+
+        [Test]
         public void SetCurrentFileLine_WhenValidLine_ShouldUpdateFile()
         {
             const string testFilename = "test.cs";
@@ -172,10 +241,6 @@ namespace DuplicateCodeViewer.Core.Tests.ViewController
             Assert.IsNotNull(linesObtained[3].Duplicate);
             Assert.IsNull(linesObtained[4].Duplicate);
         }
-
-
-
-
 
     }
 }

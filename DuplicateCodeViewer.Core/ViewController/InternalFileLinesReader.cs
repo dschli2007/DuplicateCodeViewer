@@ -38,8 +38,8 @@ namespace DuplicateCodeViewer.Core.ViewController
 
             foreach (var duplicate in _duplicates)
             {
-                var fragment = duplicate.Fragments.FirstOrDefault(f => f.SourceFile == _file);
-                if (fragment != null)
+                var fileFragments = duplicate.Fragments.Where(f => f.SourceFile == _file);
+                foreach (var fragment in fileFragments)
                 {
                     for (var i = fragment.LineStart - 1; i < fragment.LineEnd; i++)
                     {
