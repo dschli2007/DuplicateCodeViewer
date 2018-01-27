@@ -46,7 +46,9 @@
     <Compile Include="ControllerTests.cs" />
     <Compile Include="Fakes\XmlFileSourceFake.cs" />
     <Compile Include="Fakes\SourceFileBuilderFlyWeightFake.cs" />
+    <Compile Include="LoadController\InternalXmlParserObserverTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\ResourceHelper.cs" />
     <Compile Include="SourceFileBuilder\SourceFileBuilderFlyWeightTests.cs" />
     <Compile Include="XmlParser\DuplicateXmlNodeReaderTests.cs" />
     <Compile Include="XmlParser\XmlParserObservableTests.cs" />

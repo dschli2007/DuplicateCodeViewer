@@ -2,6 +2,7 @@
 using System.Linq;
 using DuplicateCodeViewer.Core.LoadController;
 using DuplicateCodeViewer.Core.Tests.Fakes;
+using DuplicateCodeViewer.Core.Tests.Resources;
 using NUnit.Framework;
 
 namespace DuplicateCodeViewer.Core.Tests
@@ -13,7 +14,7 @@ namespace DuplicateCodeViewer.Core.Tests
         [Test]
         public void Load_WhenValidFile_ShouldLoadTheFile()
         {
-            var filename = CreateXmlFile();
+            var filename = ResourceHelper.CreateXmlFile();
             try
             {
                 var controller = new LoadControllerImplementation();
@@ -26,26 +27,6 @@ namespace DuplicateCodeViewer.Core.Tests
                 File.Delete(filename);
             }
         }
-
-        private string CreateXmlFile()
-        {
-            var filename = Path.GetTempFileName();
-
-            const string resourceName = "DuplicateCodeViewer.Core.Tests.Resources.complete.xml";
-            var stream = GetType().Assembly.GetManifestResourceStream(resourceName);
-            try
-            {
-                using (var fs = new FileStream(filename, FileMode.Create))
-                {
-                    stream?.CopyTo(fs);
-                }
-            }
-            finally
-            {
-                stream?.Dispose();
-            }
-
-            return filename;
-        }
+       
     }
 }
