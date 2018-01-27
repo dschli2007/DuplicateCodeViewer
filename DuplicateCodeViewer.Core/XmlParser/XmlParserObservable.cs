@@ -2,19 +2,19 @@
 using System.Xml;
 using System.Linq;
 using DuplicateCodeViewer.Core.Metadata;
-using DuplicateCodeViewer.Core.SourceFileBuilder;
+using DuplicateCodeViewer.Core.SourceFileFlyWeight;
 
 namespace DuplicateCodeViewer.Core.XmlParser
 {
     internal class XmlParserObservable : IXmlParserObservable
     {
-        private readonly ISourceFileBuilderFlyWeight _sourceFileBuilder;
+        private readonly ISourceFileFlyWeight _sourceFile;
         private readonly List<IXmlParserObserver> _observers = new List<IXmlParserObserver>();
         private readonly object _observersLock = new object();
 
-        public XmlParserObservable(ISourceFileBuilderFlyWeight sourceFileBuilder)
+        public XmlParserObservable(ISourceFileFlyWeight sourceFile)
         {
-            _sourceFileBuilder = sourceFileBuilder;
+            _sourceFile = sourceFile;
         }
 
         public void AddObserver(IXmlParserObserver observer)
@@ -55,7 +55,7 @@ namespace DuplicateCodeViewer.Core.XmlParser
                     Cost = nodeReader.Cost,
                     Fragments = (from item in nodeReader.Fragments select new Fragment
                     {
-                        SourceFile = _sourceFileBuilder.GetSourceFile(item.Filename),
+                        SourceFile = _sourceFile.GetSourceFile(item.Filename),
                         LineStart = item.LineStart,
                         LineEnd = item.LineEnd
 

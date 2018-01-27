@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using DuplicateCodeViewer.Core.Metadata;
 
-namespace DuplicateCodeViewer.Core.SourceFileBuilder
+namespace DuplicateCodeViewer.Core.SourceFileFlyWeight
 {
-    public interface ISourceFileBuilderFlyWeight
+    public interface ISourceFileFlyWeight
     {
         SourceFile GetSourceFile(string filename);
         IEnumerable<SourceFile> GetAll();

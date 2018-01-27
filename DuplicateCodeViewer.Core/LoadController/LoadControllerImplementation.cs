@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using DuplicateCodeViewer.Core.Metadata;
-using DuplicateCodeViewer.Core.SourceFileBuilder;
+using DuplicateCodeViewer.Core.SourceFileFlyWeight;
 
 namespace DuplicateCodeViewer.Core.LoadController
 {
@@ -29,9 +29,9 @@ namespace DuplicateCodeViewer.Core.LoadController
             var document = new XmlDocument();
             document.Load(filename);
             var relativeDirectory = Path.GetDirectoryName(filename);
-            var sourceFileBuilder = SourceFileBuilderFactory.CreateInstance(relativeDirectory);
+            var sourceFileFlyWeight = SourceFileFlyWeightFactory.CreateInstance(relativeDirectory);
 
-            var loader = new InternalXmlParserObserver(sourceFileBuilder, document, LoaderComplete);
+            var loader = new InternalXmlParserObserver(sourceFileFlyWeight, document, LoaderComplete);
             loader.Async = async;
             loader.Execute();
         }

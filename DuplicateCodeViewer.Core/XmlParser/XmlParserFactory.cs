@@ -1,12 +1,12 @@
-﻿using DuplicateCodeViewer.Core.SourceFileBuilder;
+﻿using DuplicateCodeViewer.Core.SourceFileFlyWeight;
 
 namespace DuplicateCodeViewer.Core.XmlParser
 {
     internal static class XmlParserFactory
     {
-        public static XmlParserObservable CreateInstance(ISourceFileBuilderFlyWeight sourceFileBuilder)
+        public static XmlParserObservable CreateInstance(ISourceFileFlyWeight sourceFile)
         {
-            var result = new XmlParserObservable(sourceFileBuilder);
+            var result = new XmlParserObservable(sourceFile);
             return result;
         }
     }

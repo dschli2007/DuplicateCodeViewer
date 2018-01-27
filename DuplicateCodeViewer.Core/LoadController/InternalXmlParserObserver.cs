@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Xml;
 using DuplicateCodeViewer.Core.Metadata;
-using DuplicateCodeViewer.Core.SourceFileBuilder;
+using DuplicateCodeViewer.Core.SourceFileFlyWeight;
 using DuplicateCodeViewer.Core.XmlParser;
 
 namespace DuplicateCodeViewer.Core.LoadController
 {
     internal class InternalXmlParserObserver : IXmlParserObserver
     {
-        private readonly ISourceFileBuilderFlyWeight _sourceFileBuilder;
+        private readonly ISourceFileFlyWeight _sourceFile;
         private readonly XmlDocument _document;
         private readonly Action<InternalXmlParserObserver> _completeCallback;
 
@@ -19,9 +19,9 @@ namespace DuplicateCodeViewer.Core.LoadController
 
         public bool Async { get; set; }
 
-        public InternalXmlParserObserver(ISourceFileBuilderFlyWeight sourceFileBuilder, XmlDocument document, Action<InternalXmlParserObserver> completeCallback)
+        public InternalXmlParserObserver(ISourceFileFlyWeight sourceFile, XmlDocument document, Action<InternalXmlParserObserver> completeCallback)
         {
-            _sourceFileBuilder = sourceFileBuilder;
+            _sourceFile = sourceFile;
             _document = document;
             _completeCallback = completeCallback;
         }
@@ -42,7 +42,7 @@ namespace DuplicateCodeViewer.Core.LoadController
         private void Work()
         {
             _duplicates = new List<Duplicate>();
-            _xmlParserObservable = XmlParserFactory.CreateInstance(_sourceFileBuilder);
+            _xmlParserObservable = XmlParserFactory.CreateInstance(_sourceFile);
             _xmlParserObservable.AddObserver(this);
             _xmlParserObservable.Parse(_document);
             _completeCallback?.Invoke(this);
@@ -64,7 +64,7 @@ namespace DuplicateCodeViewer.Core.LoadController
             }
         }
 
-        public IEnumerable<SourceFile> UniqueSourceFiles => _sourceFileBuilder.GetAll();
+        public IEnumerable<SourceFile> UniqueSourceFiles => _sourceFile.GetAll();
 
     }
 }

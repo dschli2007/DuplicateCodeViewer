@@ -49,9 +49,9 @@
     <Compile Include="Metadata\Line.cs" />
     <Compile Include="Metadata\SourceFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SourceFileBuilder\ISourceFileBuilderFlyWeight.cs" />
-    <Compile Include="SourceFileBuilder\SourceFileBuilderFactory.cs" />
-    <Compile Include="SourceFileBuilder\SourceFileBuilderFlyWeight.cs" />
+    <Compile Include="SourceFileFlyWeight\ISourceFileFlyWeight.cs" />
+    <Compile Include="SourceFileFlyWeight\SourceFileFlyWeightFactory.cs" />
+    <Compile Include="SourceFileFlyWeight\SourceFileFlyWeight.cs" />
     <Compile Include="ViewController\FileReaderFactoryImplementation.cs" />
     <Compile Include="ViewController\FileReaderImplementation.cs" />
     <Compile Include="ViewController\IFileReaderFactory.cs" />

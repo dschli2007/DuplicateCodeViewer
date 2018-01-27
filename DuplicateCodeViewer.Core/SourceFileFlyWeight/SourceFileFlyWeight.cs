@@ -3,16 +3,16 @@ using System.IO;
 using System.Linq;
 using DuplicateCodeViewer.Core.Metadata;
 
-namespace DuplicateCodeViewer.Core.SourceFileBuilder
+namespace DuplicateCodeViewer.Core.SourceFileFlyWeight
 {
-    public class SourceFileBuilderFlyWeight : ISourceFileBuilderFlyWeight
+    public class SourceFileFlyWeight : ISourceFileFlyWeight
     {
         private readonly string _relativeDirectory;
         private readonly Dictionary<string, SourceFile> _files = new Dictionary<string, SourceFile>();
         private readonly object _filesLock = new object();
 
 
-        public SourceFileBuilderFlyWeight(string relativeDirectory)
+        public SourceFileFlyWeight(string relativeDirectory)
         {
             _relativeDirectory = relativeDirectory;
             if (!_relativeDirectory.EndsWith(@"\"))
